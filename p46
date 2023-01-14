@@ -1,0 +1,16 @@
+# Ping IPv6 und IPv4 
+# ping something with ipv4 and ipv6 in one step 
+# (CC) BY-NC-SA  -  http://creativecommons.org/licenses/by-nc-nd/4.0/
+
+</a>.
+
+echo "ping once ip v4 and ipv6  ................ but ... just one ping!"                                                                       
+echo "-" 
+
+P4C=`ping -4 -c1 -w1 $1|grep packet|cut -d, -f 3`     
+echo -n -e "4: $P4C" 
+P6C=`ping -6 -c1 -w1 $1|grep packet|cut -d, -f 3`     
+echo -n -e "\n6: $P6C\n" 
+echo "-"                                                                                                                      
+
+exit
