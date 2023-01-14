@@ -2,16 +2,17 @@
 # ping something with ipv4 and ipv6 in one step 
 # (CC) BY-NC-SA  -  http://creativecommons.org/licenses/by-nc-nd/4.0/
 # @cptechnik
+# used by freifunk supernodes to check if routing is ok
 
-echo "ping once ip v4 and ipv6  ................ but ... just one ping!"                                                                       
+echo "ping once ip v4 and ipv6  ................ but ... just one ping!" 
 echo "-" 
 
-P4CP=`ping -4 -c1 -w1 $1|grep packet|cut -d, -f 3`                                                                                   
-P4CI=`ping -4 -c1 -w1 $1|grep PING|cut -d"(" -f2|cut -d")" -f1`                                                                      
-echo -n -e "4: $P4CP – \033[38;5;185;1m $P4CI \033[0m"                                                                                      
-                                                                                                                                            
-P6CP=`ping -6 -c1 -w1 $1|grep packet|cut -d, -f 3`                                                                                   
-P6CI=`ping -6 -c1 -w1 $1|grep PING|cut -d"(" -f3|cut -d")" -f1`                                                                      
-echo -n -e "\n6: $P6CP – \033[38;5;185;1m $P6CI\033[0m \n"   
+P4CP=`ping -4 -c1 -w1 $1|grep packet|cut -d, -f 3` 
+P4CI=`ping -4 -c1 -w1 $1|grep PING|cut -d"(" -f2|cut -d")" -f1` 
+echo -n -e "4: $P4CP – \033[38;5;185;1m $P4CI \033[0m" 
+ 
+P6CP=`ping -6 -c1 -w1 $1|grep packet|cut -d, -f 3` 
+P6CI=`ping -6 -c1 -w1 $1|grep PING|cut -d"(" -f3|cut -d")" -f1` 
+echo -n -e "\n6: $P6CP – \033[38;5;185;1m $P6CI\033[0m \n" 
 
 exit
