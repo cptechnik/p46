@@ -1,31 +1,31 @@
-#!/bin/bash                                                                                                                                 
-# Ping IPv6 und IPv4.                                                                                                                       
-# ping something with ipv4 and ipv6 in one step.                                                                                            
-# (CC) BY-NC-SA  -  http://creativecommons.org/licenses/by-nc-nd/4.0/                                                                       
-# @cptechnik                                                                                                                                
-# used by freifunk supernodes to check if routing is ok                                                                                     
-                                                                                                                                            
-IN=$1                                                                                                                                       
-                                                                                                                                            
-if [ -n "$IN" ]                                                                                                                             
-then                                                                                                                                        
-    URL="$IN"                                                                                                                               
-else                                                                                                                                        
-    URL="kbu.freifunk.net"                                                                                                                  
-fi                                                                                                                                          
-                                                                                                                                            
-                                                                                                                                            
-echo -e "\n--\nping once  $URL  v4 and ipv6  ................ but ... just one ping!".                                                      
-                                                                                                                                            
-P4CP=`ping -4 -c1 -w1 $URL|grep packet|cut -d, -f 3`.                                                                                       
-P4CI=`ping -4 -c1 -w1 $URL|grep PING|cut -d"(" -f2|cut -d")" -f1`.                                                                          
-echo -n -e "\n4: $P4CP – \033[38;5;185;1m $P4CI \033[0m".                                                                                   
-.                                                                                                                                           
-P6CP=`ping -6 -c1 -w1 $URL|grep packet|cut -d, -f 3`.                                                                                       
-P6CI=`ping -6 -c1 -w1 $URL|grep PING|cut -d"(" -f3|cut -d")" -f1`.                                                                          
-echo -n -e "\n6: $P6CP – \033[38;5;185;1m $P6CI \033[0m"                                                                                    
-echo "                                                                                                                                      
--end                                                                                                                                        
-"                                                                                                                                           
-                                                                                                                                            
-exit             
+#!/bin/bash
+# Ping IPv6 und IPv4 
+# ping something with ipv4 and ipv6 in one step 
+# (CC) BY-NC-SA  -  http://creativecommons.org/licenses/by-nc-nd/4.0/
+# @cptechnik
+# used by freifunk supernodes to check if routing is ok
+
+IN=$1
+
+if [ -n "$IN" ]
+then
+    URL="$IN"
+else
+    URL="kbu.freifunk.net"
+fi
+
+
+echo -e "\n--\nping once  $URL  v4 and ipv6  ................ but ... just one ping!" 
+
+P4CP=`ping -4 -c1 -w1 $URL|grep packet|cut -d, -f 3` 
+P4CI=`ping -4 -c1 -w1 $URL|grep PING|cut -d"(" -f2|cut -d")" -f1` 
+echo -n -e "\n4: $P4CP – \033[38;5;185;1m $P4CI \033[0m" 
+ 
+P6CP=`ping -6 -c1 -w1 $URL|grep packet|cut -d, -f 3` 
+P6CI=`ping -6 -c1 -w1 $URL|grep PING|cut -d"(" -f3|cut -d")" -f1` 
+echo -n -e "\n6: $P6CP – \033[38;5;185;1m $P6CI \033[0m"
+echo "
+-end
+"
+
+exit
