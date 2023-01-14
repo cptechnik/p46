@@ -1,3 +1,4 @@
+#!/bin/bash
 # Ping IPv6 und IPv4 
 # ping something with ipv4 and ipv6 in one step 
 # (CC) BY-NC-SA  -  http://creativecommons.org/licenses/by-nc-nd/4.0/
