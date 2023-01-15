@@ -17,15 +17,24 @@ fi
 
 echo -e "\n--\nping once  $URL  v4 and ipv6  ................ but ... just one ping!" 
 
+#--- IPv4
+
+P4A=`ping -4 -c1 -w1 $URL` 
+
 P4CP=`ping -4 -c1 -w1 $URL|grep packet|cut -d, -f 3` 
 P4CI=`ping -4 -c1 -w1 $URL|grep PING|cut -d"(" -f2|cut -d")" -f1` 
-echo -n -e "\n4: $P4CP – \033[38;5;185;1m $P4CI \033[0m" 
- 
-P6CP=`ping -6 -c1 -w1 $URL|grep packet|cut -d, -f 3` 
-P6CI=`ping -6 -c1 -w1 $URL|grep PING|cut -d"(" -f3|cut -d")" -f1` 
-echo -n -e "\n6: $P6CP – \033[38;5;185;1m $P6CI \033[0m"
-echo "
--end
-"
+P4oip=${P4A:7:13}
+P4oloss1=$(echo $P4A|grep packet|cut -d, -f 3) 
+P4oloss9=${P4oloss1//100% packet loss/\033[31;5m100% packet loss\033[0m } 
+
+echo -n -e "\n4.1: $P4CP – \033[32;2m $P4CI \033[0m" 
+echo -n -e "\n4.2: $P4oloss9 – \033[32;2m $P4oip \033[0m \n"
+
+#--- IPv6
+P6A=`ping -6 -c1 -w1 $URL`
+P6oip=$(echo $P6A|grep PING|cut -d"(" -f3|cut -d")" -f1)
+P6oloss1=$(echo $P6A|grep packet|cut -d, -f 3) 
+P6oloss9=${P6oloss1//100% packet loss/\\033[31;5m100% packet loss\\033[0;0m}
+echo -n -e "\n6: $P6oloss9 – \033[32;2m $P6oip \033[0m \n\n-end\n"
 
 exit
